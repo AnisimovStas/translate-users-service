@@ -13,36 +13,41 @@ jobs:
       - name: Checkout репозиторий
         uses: actions/checkout@v4
 
-      - name: Установить JDK 23
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'temurin'
-          java-version: '23'
-          cache: gradle
-
-      - name: Дать права на выполнение gradlew
-        run: chmod +x gradlew
-
-      - name: Собрать проект
-        run: ./gradlew build -x test
-
-      - name: Собрать Docker-образ
-        run: docker build -t users:latest .
-
-      - name: Сохранить Docker-образ в tar-файл
-        run: docker save -o users.tar users:latest
-
-      - name: Дать права на tar-файл
-        run: sudo chmod -R 777 .
-
-      - name: Отправить образ на сервер
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          password: ${{ secrets.SSH_PASSWORD }}
-          source: "users.tar"
-          target: "~/opt/translate"  # Путь на сервере, куда будет отправлен файл
+      - name: run docker
+        run: |
+          ./gradlew users:bootBuildImage 
+          ./gradlew users:pushImage
+#
+#      - name: Установить JDK 23
+#        uses: actions/setup-java@v3
+#        with:
+#          distribution: 'temurin'
+#          java-version: '23'
+#          cache: gradle
+#
+#      - name: Дать права на выполнение gradlew
+#        run: chmod +x gradlew
+#
+#      - name: Собрать проект
+#        run: ./gradlew build -x test
+#
+#      - name: Собрать Docker-образ
+#        run: docker build -t users:latest .
+#
+#      - name: Сохранить Docker-образ в tar-файл
+#        run: docker save -o users.tar users:latest
+#
+#      - name: Дать права на tar-файл
+#        run: sudo chmod -R 777 .
+#
+#      - name: Отправить образ на сервер
+#        uses: appleboy/scp-action@master
+#        with:
+#          host: ${{ secrets.SSH_HOST }}
+#          username: ${{ secrets.SSH_USER }}
+#          password: ${{ secrets.SSH_PASSWORD }}
+#          source: "users.tar"
+#          target: "~/opt/translate"  # Путь на сервере, куда будет отправлен файл
 
   deploy:
     needs: build
@@ -58,14 +63,14 @@ jobs:
           debug: true
           script: |
             cd ~/opt/translate
-            # Загружаем Docker образ
-            docker load -i users.tar
+             Загружаем Docker образ
+#            docker load -i users.tar
 
             # Тегируем образ для локального реестра
             docker tag users:latest 127.0.0.1:5000/users:latest
 
             # Отправляем образ в локальный реестр
-            docker push 127.0.0.1:5000/users:latest
+#            docker push 127.0.0.1:5000/users:latest
 
             # Обновляем контейнеры с использованием docker-compose
             docker-compose down  # Останавливаем старые контейнеры

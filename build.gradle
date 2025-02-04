@@ -51,11 +51,25 @@ dependencies {
 
 }
 
-task buildDocker(type: Docker) {
-	dependsOn build
-	dockerFile = file('Dockerfile')
-	images = ['users:latest']
+bootBuildImage {
+	imageName="users:"
+	createdDate = "now"
+	docker {
+		builderRegistry {
+
+			url = "http://feral.servebeer.com"
+		}
+	}
+	pullPolicy = "IF_NOT_PRESENT"
+	builder = "paketobuildpacks/build-jammy-base"
+	runImage = "paketobuildpacks/run-jammy-base"
 }
+
+tasks.register('pushImage', Exec) {
+	group = 'publishing'
+	commandLine 'docker', 'push', "feral.servebeer.com"
+}
+
 
 dependencyManagement {
 	imports {
