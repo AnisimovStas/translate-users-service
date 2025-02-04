@@ -4,8 +4,7 @@ WORKDIR /app
 
 # Копируем файлы и собираем приложение
 COPY . .
-RUN ./gradlew build -x test
-
+RUN chmod +x gradlew && ./gradlew build -x test
 # Используем JRE для запуска
 FROM eclipse-temurin:21-jre
 WORKDIR /app
