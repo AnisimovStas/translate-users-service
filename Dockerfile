@@ -10,7 +10,7 @@ FROM eclipse-temurin:23-jre
 WORKDIR /app
 
 # Копируем JAR из builder-образа
-COPY --from=builder /app/build/libs/*.jar app.jar
+COPY --from=builder /app/build/libs/*.jar /app/users.jar
 
 # Определяем переменные окружения (чтобы они подтягивались из docker-compose)
 ENV JWT_SECRET=""
@@ -22,4 +22,4 @@ CMD java \
     -DJWT.SECRET="$JWT_SECRET" \
     -DUSERS.DB.PASSWORD="$USERS_DB_PASSWORD" \
     -DUSERS.DB.USERNAME="$USERS_DB_USERNAME" \
-    -jar app.jar
+    -jar users.jar
