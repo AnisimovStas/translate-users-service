@@ -30,18 +30,20 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           script: |
             cd ~/opt/translate
-             Загружаем Docker образ
-#            docker load -i users.tar
+
+            # Загружаем Docker образ
+            # docker load -i users.tar
 
             # Тегируем образ для локального реестра
             docker tag users:latest 127.0.0.1:5000/users:latest
 
             # Отправляем образ в локальный реестр
-#            docker push 127.0.0.1:5000/users:latest
+            # docker push 127.0.0.1:5000/users:latest
 
             # Обновляем контейнеры с использованием docker-compose
             docker-compose down  # Останавливаем старые контейнеры
             docker-compose up -d --force-recreate  # Перезапускаем контейнеры с новыми образами
 
             # Очищаем неиспользуемые образы и контейнеры
-            docker system prune -af 
+            docker system prune -af
+
