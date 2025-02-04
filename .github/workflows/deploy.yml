@@ -20,6 +20,9 @@ jobs:
           java-version: '21'
           cache: gradle
 
+      - name: Дать права на выполнение gradlew
+        run: chmod +x gradlew
+
       - name: Собрать проект
         run: ./gradlew build -x test
 
