@@ -56,7 +56,8 @@ bootBuildImage {
 	createdDate = "now"
 	docker {
 		builderRegistry {
-
+			username = "feral"
+			password = "8925"
 			url = "http://feral.servebeer.com"
 		}
 	}
