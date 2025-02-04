@@ -51,6 +51,12 @@ dependencies {
 
 }
 
+task buildDocker(type: Docker) {
+	dependsOn build
+	dockerFile = file('Dockerfile')
+	images = ['users:latest']
+}
+
 dependencyManagement {
 	imports {
 		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
