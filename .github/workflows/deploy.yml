@@ -13,6 +13,9 @@ jobs:
       - name: Checkout репозиторий
         uses: actions/checkout@v4
 
+      - name: Установить права на выполнение gradlew
+        run: chmod +x ./gradlew
+
       - name: run docker
         run: |
           ./gradlew users:bootBuildImage 
