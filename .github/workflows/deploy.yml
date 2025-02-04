@@ -13,11 +13,11 @@ jobs:
       - name: Checkout репозиторий
         uses: actions/checkout@v4
 
-      - name: Установить JDK 21
+      - name: Установить JDK 23
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
-          java-version: '21'
+          java-version: '23'
           cache: gradle
 
       - name: Дать права на выполнение gradlew

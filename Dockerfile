@@ -1,12 +1,12 @@
 # Используем JDK для сборки
-FROM eclipse-temurin:21-jdk AS builder
+FROM eclipse-temurin:23-jdk AS builder
 WORKDIR /app
 
 # Копируем файлы и собираем приложение
 COPY . .
 RUN chmod +x gradlew && ./gradlew build -x test
 # Используем JRE для запуска
-FROM eclipse-temurin:21-jre
+FROM eclipse-temurin:23-jre
 WORKDIR /app
 
 # Копируем JAR из builder-образа
