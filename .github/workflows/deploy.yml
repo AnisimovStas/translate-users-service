@@ -32,6 +32,9 @@ jobs:
       - name: Сохранить Docker-образ в tar-файл
         run: docker save -o users.tar users:latest
 
+      - name: Дать права на tar-файл
+        run: sudo chmod -R 777 .
+
       - name: Отправить образ на сервер
         uses: appleboy/scp-action@master
         with:
