@@ -42,7 +42,7 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.SSH_PASSWORD }}
           source: "users.tar"
-          target: "~/app"  # Путь на сервере, куда будет отправлен файл
+          target: "~/opt/translate"  # Путь на сервере, куда будет отправлен файл
 
   deploy:
     needs: build
@@ -57,16 +57,13 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           script: |
             # Загружаем Docker образ
-            docker load -i ~/app/users.tar
+            docker load -i ~/opt/translate/users.tar
 
             # Тегируем образ для локального реестра
             docker tag users:latest 127.0.0.1:5000/users:latest
 
             # Отправляем образ в локальный реестр
             docker push 127.0.0.1:5000/users:latest
-
-            # Переходим в нужную директорию для выполнения docker-compose
-            cd ~/opt/translate  # Путь до директории, где находится docker-compose.yml
 
             # Обновляем контейнеры с использованием docker-compose
             docker-compose down  # Останавливаем старые контейнеры
