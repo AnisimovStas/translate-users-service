@@ -23,4 +23,4 @@ CMD java \
     -DJWT.SECRET="$JWT_SECRET" \
     -DUSERS.DB.PASSWORD="$USERS_DB_PASSWORD" \
     -DUSERS.DB.USERNAME="$USERS_DB_USERNAME" \
-    -jar app.jar
+    -jar users.jar
