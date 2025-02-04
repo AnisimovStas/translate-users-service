@@ -52,7 +52,7 @@ dependencies {
 }
 
 bootBuildImage {
-	imageName="users:"
+	imageName="feral.servebeer.com:5000/users:latest"
 	createdDate = "now"
 	docker {
 		builderRegistry {
@@ -62,8 +62,8 @@ bootBuildImage {
 		}
 	}
 	pullPolicy = "IF_NOT_PRESENT"
-	builder = "paketobuildpacks/build-jammy-base"
-	runImage = "paketobuildpacks/run-jammy-base"
+	builder = "paketobuildpacks/builder-jammy-base:latest"
+	runImage = "paketobuildpacks/run-jammy-base:latest"
 }
 
 tasks.register('pushImage', Exec) {
