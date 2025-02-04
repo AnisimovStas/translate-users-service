@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: users
+  datasource:
+    url: jdbc:postgresql://localhost:5432/users
+    username: ${USERS.DB.USERNAME}
+    password: ${USERS.DB.PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  liquibase:
+    change-log: classpath:liquibase/users-changelog.xml
+token:
+  signing:
+    key: ${JWT.SECRET}
+
+
+
