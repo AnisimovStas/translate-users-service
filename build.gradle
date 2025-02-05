@@ -52,21 +52,21 @@ dependencies {
 
 }
 
-bootBuildImage {
-	imageName="172.17.0.1:5000/users:latest"
-	createdDate = "now"
-	docker {
-		builderRegistry {
-
-			username.set("")
-			password.set("")
-			url = "172.17.0.1:5000"
-		}
-	}
-	pullPolicy = "IF_NOT_PRESENT"
-	builder = "paketobuildpacks/builder-jammy-base:latest"
-	runImage = "paketobuildpacks/run-jammy-base:latest"
-}
+//bootBuildImage {
+//	imageName="feral.servebeer.com:5000/users:latest"
+//	createdDate = "now"
+//	docker {
+//		builderRegistry {
+//
+//			username.set("")
+//			password.set("")
+//			url = "feral.servebeer.com:5000"
+//		}
+//	}
+//	pullPolicy = "IF_NOT_PRESENT"
+//	builder = "paketobuildpacks/builder-jammy-base:latest"
+//	runImage = "paketobuildpacks/run-jammy-base:latest"
+//}
 
 jib {
 	from {
@@ -79,10 +79,10 @@ jib {
 	}
 }
 
-tasks.register('pushImage', Exec) {
-	group = 'publishing'
-	commandLine 'docker', 'push', "172.17.0.1:5000/users:latest"
-}
+//tasks.register('pushImage', Exec) {
+//	group = 'publishing'
+//	commandLine 'docker', 'push', "feral.servebeer.com:5000/users:latest"
+//}
 
 
 dependencyManagement {
