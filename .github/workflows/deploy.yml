@@ -45,15 +45,15 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           script: |
             cd ~/opt/translate
-            docker login 127.0.0.1:5000 -u feral -p 8925
+            docker login feral.servebeer.com:5000 -u feral -p 8925
             # Загружаем Docker образ
             # docker load -i users.tar
 
             # Тегируем образ для локального реестра
-            docker tag users:latest 127.0.0.1:5000/users:latest
+            docker tag users:latest feral.servebeer.com:5000/users:latest
 
             # Отправляем образ в локальный реестр
-            # docker push 127.0.0.1:5000/users:latest
+            # docker push feral.servebeer.com:5000/users:latest
 
             # Обновляем контейнеры с использованием docker-compose
             docker-compose down  # Останавливаем старые контейнеры

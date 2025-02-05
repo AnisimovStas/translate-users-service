@@ -52,23 +52,23 @@ dependencies {
 }
 
 bootBuildImage {
-	imageName="127.0.0.1:5000/users:latest"
+	imageName="feral.servebeer.com:5000/users:latest"
 	createdDate = "now"
 	docker {
 		builderRegistry {
 			username.set("")
 			password.set("")
-			url = "127.0.0.1"
+			url = "feral.servebeer.com:5000"
 		}
 	}
 	pullPolicy = "IF_NOT_PRESENT"
-	builder = "127.0.0.1:5000/paketobuildpacks/builder-jammy-base:latest"
-	runImage = "127.0.0.1:5000/paketobuildpacks/run-jammy-base:latest"
+	builder = "feral.servebeer.com:5000/paketobuildpacks/builder-jammy-base:latest"
+	runImage = "feral.servebeer.com:5000/paketobuildpacks/run-jammy-base:latest"
 }
 
 tasks.register('pushImage', Exec) {
 	group = 'publishing'
-	commandLine 'docker', 'push', "127.0.0.1:5000/users:latest"
+	commandLine 'docker', 'push', "feral.servebeer.com:5000/users:latest"
 }
 
 
