@@ -30,7 +30,7 @@ jobs:
 
       - name: run docker
         run: |
-          ./gradlew :bootBuildImage 
+#          ./gradlew :bootBuildImage
           ./gradlew jib
   deploy:
     needs: build
