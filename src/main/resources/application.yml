@@ -2,7 +2,7 @@ spring:
   application:
     name: users
   datasource:
-    url: jdbc:postgresql://localhost:5432/users
+    url: jdbc:postgresql://host.docker.internal:5432/users
     username: ${USERS.DB.USERNAME}
     password: ${USERS.DB.PASSWORD}
     driver-class-name: org.postgresql.Driver
