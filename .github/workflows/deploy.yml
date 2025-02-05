@@ -30,7 +30,7 @@ jobs:
 
       - name: run docker
         run: |
-          ./gradlew jib --image=feral.servebeer.com:5000/users:latest
+          ./gradlew jib
   deploy:
     needs: build
     runs-on: ubuntu-latest
