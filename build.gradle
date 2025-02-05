@@ -2,6 +2,7 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.4.2'
 	id 'io.spring.dependency-management' version '1.1.7'
+	id("com.google.cloud.tools.jib") version "3.4.2"
 }
 
 group = 'feral.translate.users'
@@ -65,6 +66,13 @@ bootBuildImage {
 	pullPolicy = "IF_NOT_PRESENT"
 	builder = "paketobuildpacks/builder-jammy-base:latest"
 	runImage = "paketobuildpacks/run-jammy-base:latest"
+}
+
+jib {
+	to {
+		image = "feral.servebeer.com:5000/users:latest"
+		allowInsecureRegistries = true
+	}
 }
 
 tasks.register('pushImage', Exec) {
