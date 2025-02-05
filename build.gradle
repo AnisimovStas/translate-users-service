@@ -73,7 +73,7 @@ jib {
 		image = "eclipse-temurin:23-jdk"
 	}
 	container {
-		mainClass = 'feral.translate.users.UsersApplication'
+		mainClass = 'build.classes.java.main.feral.translate.users.UsersApplication'
 	}
 	to {
 		image = "feral.servebeer.com:5000/users:latest"

@@ -46,19 +46,7 @@ jobs:
           script: |
             cd ~/opt/translate
             docker login feral.servebeer.com:5000 -u feral -p 8925
-            # Загружаем Docker образ
-            # docker load -i users.tar
-
-            # Тегируем образ для локального реестра
             docker tag users:latest feral.servebeer.com:5000/users:latest
-
-            # Отправляем образ в локальный реестр
-            # docker push feral.servebeer.com:5000/users:latest
-
-            # Обновляем контейнеры с использованием docker-compose
-            docker-compose down  # Останавливаем старые контейнеры
-            docker-compose up -d --force-recreate  # Перезапускаем контейнеры с новыми образами
-
-            # Очищаем неиспользуемые образы и контейнеры
+            docker-compose down
+            docker-compose up -d --force-recreate
             docker system prune -af
-
