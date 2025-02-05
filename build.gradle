@@ -68,7 +68,7 @@ bootBuildImage {
 
 tasks.register('pushImage', Exec) {
 	group = 'publishing'
-	commandLine 'docker', 'push', "feral.servebeer.com"
+	commandLine 'docker', 'push', "feral.servebeer.com:5000/users:latest"
 }
 
 
