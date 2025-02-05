@@ -45,7 +45,7 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           script: |
             cd ~/opt/translate
-            docker login feral.servebeer.com:5000 -u feral -p 8925
+            docker login 127.0.0.1:5000 -u feral -p 8925
             # Загружаем Docker образ
             # docker load -i users.tar
 
