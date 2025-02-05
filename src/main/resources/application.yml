@@ -11,6 +11,11 @@ spring:
 token:
   signing:
     key: ${JWT.SECRET}
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG
 
 
 
