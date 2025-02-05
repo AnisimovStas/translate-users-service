@@ -45,8 +45,8 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           script: |
             cd ~/opt/translate
-            docker login feral.servebeer.com:5000 -u feral -p 8925
-            docker tag users:latest feral.servebeer.com:5000/users:latest
+            docker login 172.17.0.1:5000 -u feral -p 8925
+            docker tag users:latest 172.17.0.1:5000/users:latest
             docker-compose down
             docker-compose up -d --force-recreate
             docker system prune -af

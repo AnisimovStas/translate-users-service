@@ -53,14 +53,14 @@ dependencies {
 }
 
 bootBuildImage {
-	imageName="feral.servebeer.com:5000/users:latest"
+	imageName="172.17.0.1:5000/users:latest"
 	createdDate = "now"
 	docker {
 		builderRegistry {
 
 			username.set("")
 			password.set("")
-			url = "feral.servebeer.com:5000"
+			url = "172.17.0.1:5000"
 		}
 	}
 	pullPolicy = "IF_NOT_PRESENT"
