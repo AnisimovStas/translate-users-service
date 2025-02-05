@@ -17,6 +17,8 @@ logging:
       springframework:
         security: DEBUG
 springdoc:
+  api-docs:
+    path: /swagger-ui/v3/api-docs
   pathsToMatch: /**
   swagger-ui:
     urls:
