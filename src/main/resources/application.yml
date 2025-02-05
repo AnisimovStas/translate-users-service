@@ -22,7 +22,7 @@ springdoc:
   pathsToMatch: /**
   swagger-ui:
     urls:
-      - url: /v3/api-docs
+      - url: /swagger-ui/v3/api-docs
         name: ApiGateway
 
 
