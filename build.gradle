@@ -69,6 +69,9 @@ bootBuildImage {
 }
 
 jib {
+	from {
+		image = "eclipse-temurin:23-jdk"
+	}
 	to {
 		image = "feral.servebeer.com:5000/users:latest"
 		allowInsecureRegistries = true
