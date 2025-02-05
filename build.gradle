@@ -81,7 +81,7 @@ jib {
 
 tasks.register('pushImage', Exec) {
 	group = 'publishing'
-	commandLine 'docker', 'push', "feral.servebeer.com:5000/users:latest"
+	commandLine 'docker', 'push', "172.17.0.1:5000/users:latest"
 }
 
 
