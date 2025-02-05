@@ -72,9 +72,9 @@ jib {
 	from {
 		image = "eclipse-temurin:21-jdk"
 	}
-	container {
-		mainClass = 'feral.translate.users.UsersApplication'
-	}
+//	container {
+//		mainClass = 'feral.translate.users.UsersApplication'
+//	}
 	to {
 		image = "feral.servebeer.com:5000/users:latest"
 		allowInsecureRegistries = true
