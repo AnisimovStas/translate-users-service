@@ -30,7 +30,7 @@ jobs:
 
       - name: run docker
         run: |
-          ./gradlew jib
+          ./gradlew jibDockerBuild
   deploy:
     needs: build
     runs-on: ubuntu-latest
