@@ -63,8 +63,8 @@ bootBuildImage {
 		}
 	}
 	pullPolicy = "IF_NOT_PRESENT"
-	builder = "http://feral.servebeer.com:5000/paketobuildpacks/builder-jammy-base:latest"
-	runImage = "http://feral.servebeer.com:5000/paketobuildpacks/run-jammy-base:latest"
+	builder = "paketobuildpacks/builder-jammy-base:latest"
+	runImage = "paketobuildpacks/run-jammy-base:latest"
 }
 
 tasks.register('pushImage', Exec) {
