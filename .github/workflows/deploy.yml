@@ -30,7 +30,7 @@ jobs:
 
       - name: run docker
         run: |
-          ./gradlew jib
+          ./gradlew jib --image=feral.servebeer.com:5000/users:latest
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -44,7 +44,7 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           script: |
             cd ~/opt/translate
-            docker pull feral.servebeer.com:5000/users:latest
-            docker-compose down
-            docker-compose up -d --force-recreate
+            docker stop $(docker ps -q --filter "ancestor=feral.servebeer.com:5000/users:latest")
             docker system prune -af
+            docker-compose pull
+            docker-compose up -d --force-recreate
