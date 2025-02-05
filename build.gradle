@@ -57,8 +57,6 @@ bootBuildImage {
 	docker {
 		builderRegistry {
 
-			username.set("")
-			password.set("")
 			url = "feral.servebeer.com:5000"
 		}
 	}

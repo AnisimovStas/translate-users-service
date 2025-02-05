@@ -31,7 +31,7 @@ jobs:
       - name: run docker
         run: |
           ./gradlew :bootBuildImage 
-          ./gradlew :pushImage
+          ./gradlew :pushImage --insecure registry
   deploy:
     needs: build
     runs-on: ubuntu-latest
