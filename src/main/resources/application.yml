@@ -16,6 +16,11 @@ logging:
     org:
       springframework:
         security: DEBUG
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    url: http://localhost:5454/swagger-ui/index.html
 
 
 
