@@ -56,14 +56,14 @@ bootBuildImage {
 	createdDate = "now"
 	docker {
 		builderRegistry {
-			username = "feral"
-			password = "8925"
+			username.set("")
+			password.set("")
 			url = "http://feral.servebeer.com"
 		}
 	}
 	pullPolicy = "IF_NOT_PRESENT"
-	builder = "paketobuildpacks/builder-jammy-base:latest"
-	runImage = "paketobuildpacks/run-jammy-base:latest"
+	builder = "feral.servebeer.com:5000/paketobuildpacks/builder-jammy-base:latest"
+	runImage = "feral.servebeer.com:5000/paketobuildpacks/run-jammy-base:latest"
 }
 
 tasks.register('pushImage', Exec) {
