@@ -8,6 +8,10 @@ spring:
     driver-class-name: org.postgresql.Driver
   liquibase:
     change-log: classpath:liquibase/users-changelog.xml
+
+services:
+  translate:
+    url: http://localhost:8091
 token:
   signing:
     key: ${JWT.SECRET}
