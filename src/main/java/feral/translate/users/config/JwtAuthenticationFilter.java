@@ -29,9 +29,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(
-            @NonNull HttpServletRequest request,
-            @NonNull HttpServletResponse response,
-            @NonNull FilterChain filterChain
+        @NonNull HttpServletRequest request,
+        @NonNull HttpServletResponse response,
+        @NonNull FilterChain filterChain
     ) throws ServletException, IOException {
 
         // Получаем токен из заголовка
@@ -47,22 +47,26 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         if (StringUtils.isNotEmpty(username) && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = userService
-                    .userDetailsService()
-                    .loadUserByUsername(username);
+                .userDetailsService()
+                .loadUserByUsername(username);
 
             // Если токен валиден, то аутентифицируем пользователя
             if (jwtService.isTokenValid(jwt, userDetails)) {
                 SecurityContext context = SecurityContextHolder.createEmptyContext();
 
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
-                        userDetails,
-                        null,
-                        userDetails.getAuthorities()
+                    userDetails,
+                    null,
+                    userDetails.getAuthorities()
                 );
 
+                // Получаем userId из токена и добавляем его в атрибуты Authentication
+                Long userId = jwtService.extractUserId(jwt); // Предположим, что метод для извлечения userId есть в JwtService
                 authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                context.setAuthentication(authToken);
-                SecurityContextHolder.setContext(context);
+
+                // Добавляем userId в атрибуты для доступа в дальнейшем
+                SecurityContextHolder.getContext().setAuthentication(authToken);
+                request.setAttribute("userId", userId); // Сохраняем userId в запросе
             }
         }
         filterChain.doFilter(request, response);

@@ -126,4 +126,14 @@ public class JwtService {
         byte[] keyBytes = Decoders.BASE64.decode(jwtSigningKey);
         return Keys.hmacShaKeyFor(keyBytes);
     }
+
+    public Long extractUserId(String jwt) {
+        Claims claims = Jwts.parser() // Используем parserBuilder() для создания парсера
+            .setSigningKey(jwtSigningKey)
+            .build() // Строим парсер
+            .parseClaimsJws(jwt) // Парсим JWT
+            .getBody(); // Извлекаем тело с claims
+        return claims.get("userId", Long.class); // Извлекаем userId из claims
+    }
+
 }

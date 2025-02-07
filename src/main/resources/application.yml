@@ -12,6 +12,8 @@ spring:
 services:
   translate:
     url: http://localhost:8091
+  logic:
+    url: http://localhost:8092
 token:
   signing:
     key: ${JWT.SECRET}
